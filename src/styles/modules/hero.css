@@ -1,0 +1,89 @@
+/* ===========================
+   Hero Section – Static Centered
+   =========================== */
+body {
+  padding-top: 0 !important;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0520 0%, #1a0a38 50%, #0d0d2b 100%);
+}
+
+/* Canvas fills the hero full-bleed */
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Subtle overlay */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 5, 32, 0.45) 0%,
+    rgba(83, 56, 158, 0.30) 100%
+  );
+  z-index: 1;
+}
+
+/* Centered content block */
+.hero-static-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  animation: heroFadeUp 1s ease-out both;
+}
+
+.hero-logo {
+  width: 400px;
+  max-width: 90vw;
+  height: auto;
+  }
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.80);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

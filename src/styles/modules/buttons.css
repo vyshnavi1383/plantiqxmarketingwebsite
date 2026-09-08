@@ -1,0 +1,89 @@
+/* ===========================
+   Buttons
+   =========================== */
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 0.7rem 1.8rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #5b4cd6;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn-warning {
+  background-color: var(--secondary-color);
+  border: none;
+  padding: 0.7rem 1.8rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background-color: #e68600;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 149, 0, 0.3);
+}
+
+.btn-demo {
+  background: linear-gradient(26.57deg, #53389e 8.33%, #6941c6 91.67%);
+  color: var(--white);
+  border: none;
+  padding: 0.7rem 1.8rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-demo:hover {
+  background-color: #5b4cd6;
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn-arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btn-demo:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+.btn-primary-outline {
+  background: linear-gradient(26.57deg, #53389e 8.33%, #6941c6 91.67%);
+  box-shadow: 0px 8px 8px -4px #10182808;
+  box-shadow: 0px 20px 24px -4px #10182814;
+  border: none !important;
+  color: #ffffff;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-primary-outline:hover {
+  background: #ffffff;
+  box-shadow: 0px 8px 8px -4px #10182808;
+  box-shadow: 0px 20px 24px -4px #10182814;
+  border: 2px solid #6941c6;
+  color: linear-gradient(26.57deg, #53389e 8.33%, #6941c6 91.67%);
+}

@@ -1,0 +1,103 @@
+/* ===========================
+   Base Layout
+   =========================== */
+
+/* Zoom-safe container */
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.job-opening {
+  background-color: #e6e0f8; /* light purple */
+  border-radius: 3px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.job-header h1 {
+  margin: 0;
+  font-weight: 100;
+  color: #4b0082; /* deep purple text */
+}
+
+.toggle-btn {
+  background: none;
+ 
+  font-size: 0.5rem;
+  color: #4b0082;
+  cursor: pointer;
+}
+
+.job-description {
+  display: none; /* hidden by default */
+  margin-top: 6px;
+  color: #333;
+}
+.bg-light-purple {
+  background-color: #e6e0f8; /* light purple background */
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.job-header h3 {
+  margin: 0;
+  font-weight: 600;
+  color: white; /* deep purple text */
+}
+#power-management {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  border-radius: 12px;
+}
+
+#power-management::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+ 
+  transition: opacity 1s ease-in-out;
+
+  opacity: 1;
+}
+
+#power-management:hover::before {
+  opacity: 0.6;
+}
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#power-management::before {
+  animation: fadeInBg 1.5s ease-in-out;
+}
+
+

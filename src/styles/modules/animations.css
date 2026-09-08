@@ -1,0 +1,64 @@
+/* ===========================
+   Animations
+   =========================== */
+
+/* ── Scroll Reveal ─────────────────────────────────── */
+
+/* Base hidden state — applied by JS before element enters view */
+[data-sr] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 0.7s;
+  will-change: opacity, transform;
+}
+
+/* Directional starting positions */
+[data-sr="up"]    { transform: translateY(40px); }
+[data-sr="down"]  { transform: translateY(-30px); }
+[data-sr="left"]  { transform: translateX(-50px); }
+[data-sr="right"] { transform: translateX(50px); }
+[data-sr="scale"] { transform: scale(0.88); }
+[data-sr="fade"]  { transform: none; }
+
+/* Revealed state */
+[data-sr].sr-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays for sibling groups */
+[data-sr-delay="1"] { transition-delay: 0.08s; }
+[data-sr-delay="2"] { transition-delay: 0.16s; }
+[data-sr-delay="3"] { transition-delay: 0.24s; }
+[data-sr-delay="4"] { transition-delay: 0.32s; }
+[data-sr-delay="5"] { transition-delay: 0.40s; }
+[data-sr-delay="6"] { transition-delay: 0.48s; }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  [data-sr] {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

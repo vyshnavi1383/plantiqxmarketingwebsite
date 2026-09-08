@@ -1,0 +1,138 @@
+/* ===========================
+   Modal Form Styles (Scoped)
+   =========================== */
+#demoModal .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#demoModal .form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+#demoModal .form-control {
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1a1a1a;
+  transition: border-color 0.3s ease;
+}
+
+#demoModal .form-control:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: none;
+}
+
+#demoModal .form-control::placeholder {
+  color: #9ca3af;
+}
+
+.btn-modal-submit {
+  padding: 14px 32px;
+  background-color: #7c3aed;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-modal-submit:hover {
+  background-color: #6941c6;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+}
+
+/* Thank You Message Styles (Scoped) */
+#demoModal .thank-you-message {
+  text-align: center;
+  padding: 20px 0;
+}
+
+#demoModal .thank-you-icon {
+  margin-bottom: 24px;
+}
+
+#demoModal .thank-you-icon i {
+  font-size: 80px;
+  color: #10b981;
+}
+
+#demoModal .thank-you-message h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+#demoModal .thank-you-text {
+  font-size: 1.1rem;
+  color: #667085;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+#demoModal .what-happens-next {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+#demoModal .what-happens-next h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+#demoModal .what-happens-next ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#demoModal .what-happens-next ul li {
+  font-size: 1rem;
+  color: #1a1a1a;
+  padding: 12px 0;
+  padding-left: 32px;
+  position: relative;
+  line-height: 1.6;
+}
+
+#demoModal .what-happens-next ul li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #7c3aed;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+#demoModal .btn-back-to-form {
+  background: linear-gradient(26.57deg, #53389e 8.33%, #6941c6 91.67%);
+  color: var(--white);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#demoModal .btn-back-to-form:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
+}

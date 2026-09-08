@@ -1,0 +1,22 @@
+/* ===========================
+   PlantIQX Main Stylesheet
+   =========================== */
+
+/* Modules Import */
+@import url("modules/variables.css");
+@import url("modules/layout.css");
+@import url("modules/typography.css");
+@import url("modules/animations.css");
+@import url("modules/buttons.css");
+@import url("modules/navbar.css");
+@import url("modules/hero.css");
+@import url("modules/sections.css");
+@import url("modules/features.css");
+@import url("modules/products.css"); /* Contains duplicated blocks as in original */
+@import url("modules/services.css");
+@import url("modules/testimonials.css");
+@import url("modules/news.css");
+@import url("modules/forms.css"); /* Contains Modules Banner */
+@import url("modules/faq.css");
+@import url("modules/modal.css");
+@import url("modules/footer.css");

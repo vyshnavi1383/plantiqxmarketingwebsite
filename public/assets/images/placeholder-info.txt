@@ -1,0 +1,31 @@
+PLACEHOLDER IMAGES NEEDED:
+
+Hero Section (1920x1080):
+- hero-bg-1.jpg - Industrial equipment/factory scene
+- hero-bg-2.jpg - Technology/smart factory
+- hero-bg-3.jpg - Modern industrial facility
+
+Services Section (800x600):
+- service-1.jpg - Asset management visual
+- service-2.jpg - Team collaboration
+- service-3.jpg - IoT/Technology integration
+- service-4.jpg - Security/Administration
+
+Testimonials Section (400x400):
+- client-1.jpg - Professional headshot
+- client-2.jpg - Professional headshot
+- client-3.jpg - Professional headshot
+- client-4.jpg - Professional headshot
+- client-5.jpg - Professional headshot
+- client-6.jpg - Professional headshot
+- client-featured.jpg - Large testimonial image (800x1000)
+
+Updates Section (600x400):
+- update-1.jpg - AI/Manufacturing
+- update-2.jpg - Maintenance/Equipment
+- update-3.jpg - IoT/Smart Factory
+- update-4.jpg - Industry 4.0
+
+TEMPORARY SOLUTION:
+The website will use placeholder images from https://via.placeholder.com until you add your actual images.
+Simply replace these files with your real images keeping the same filenames.

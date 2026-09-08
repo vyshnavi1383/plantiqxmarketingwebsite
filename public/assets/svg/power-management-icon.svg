@@ -1,0 +1,166 @@
+<svg viewBox="0 0 500 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0a3c"/>
+      <stop offset="100%" stop-color="#0d1f3c"/>
+    </linearGradient>
+    <linearGradient id="screenG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f0a24"/>
+      <stop offset="100%" stop-color="#0a1530"/>
+    </linearGradient>
+    <linearGradient id="purpleG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6941c6"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="greenG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="orangeG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fcd34d"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#6941c6" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Device body -->
+  <rect x="60" y="20" width="380" height="400" rx="22" fill="url(#bgG)" filter="url(#shadow)"/>
+  <rect x="60" y="20" width="380" height="400" rx="22" fill="none" stroke="#6941c6" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- Header bar -->
+  <rect x="60" y="20" width="380" height="44" rx="22" fill="#6941c6" fill-opacity="0.18"/>
+  <rect x="60" y="44" width="380" height="20" fill="#6941c6" fill-opacity="0.18"/>
+  <!-- Logo text -->
+  <circle cx="86" cy="42" r="10" fill="#6941c6" fill-opacity="0.4"/>
+  <path d="M82 42 L86 36 L90 42 L86 48 Z" fill="#a78bfa" opacity="0.9"/>
+  <text x="102" y="47" font-family="system-ui,sans-serif" font-size="11" fill="#a78bfa" font-weight="700" letter-spacing="1">PLANTIQX</text>
+  <text x="102" y="57" font-family="system-ui,sans-serif" font-size="8" fill="#6941c6" letter-spacing="0.5">POWER QUALITY ANALYZER</text>
+  <!-- Date -->
+  <text x="400" y="47" text-anchor="end" font-family="monospace,sans-serif" font-size="9" fill="#6941c6">2025-01-15</text>
+  <text x="400" y="58" text-anchor="end" font-family="monospace,sans-serif" font-size="9" fill="#6941c6">11:30:15</text>
+
+  <!-- Screen area -->
+  <rect x="76" y="72" width="348" height="268" rx="10" fill="url(#screenG)"/>
+  <rect x="76" y="72" width="348" height="268" rx="10" fill="none" stroke="#6941c6" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- ── TOP READINGS ROW ── -->
+  <!-- Voltage box -->
+  <rect x="84" y="80" width="104" height="62" rx="7" fill="#ffffff" fill-opacity="0.05" stroke="#6941c6" stroke-width="0.8" stroke-opacity="0.4"/>
+  <text x="136" y="96" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#a78bfa" letter-spacing="0.8">VOLTAGE</text>
+  <text x="136" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#ffffff" font-weight="800" filter="url(#glow)">415<tspan font-size="11" fill="#a78bfa">.2</tspan></text>
+  <text x="136" y="133" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#6941c6">V (L-L)</text>
+
+  <!-- Current box -->
+  <rect x="196" y="80" width="104" height="62" rx="7" fill="#ffffff" fill-opacity="0.05" stroke="#34d399" stroke-width="0.8" stroke-opacity="0.4"/>
+  <text x="248" y="96" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#34d399" letter-spacing="0.8">CURRENT</text>
+  <text x="248" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#ffffff" font-weight="800" filter="url(#glow)">125<tspan font-size="11" fill="#34d399">.4</tspan></text>
+  <text x="248" y="133" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#34d399">A (avg)</text>
+
+  <!-- Frequency box -->
+  <rect x="308" y="80" width="108" height="62" rx="7" fill="#ffffff" fill-opacity="0.05" stroke="#f59e0b" stroke-width="0.8" stroke-opacity="0.4"/>
+  <text x="362" y="96" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#fcd34d" letter-spacing="0.8">FREQUENCY</text>
+  <text x="362" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#ffffff" font-weight="800" filter="url(#glow)">50<tspan font-size="11" fill="#fcd34d">.02</tspan></text>
+  <text x="362" y="133" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#fcd34d">Hz</text>
+
+  <!-- ── WAVEFORM PANEL ── -->
+  <rect x="84" y="150" width="220" height="80" rx="7" fill="#ffffff" fill-opacity="0.03" stroke="#6941c6" stroke-width="0.6" stroke-opacity="0.3"/>
+  <text x="94" y="163" font-family="system-ui,sans-serif" font-size="7.5" fill="#6941c6" letter-spacing="0.5">VOLTAGE WAVEFORM</text>
+  <!-- Sine waves -->
+  <path d="M88 195 Q102 172 116 195 Q130 218 144 195 Q158 172 172 195 Q186 218 200 195 Q214 172 228 195 Q242 218 256 195 Q270 172 284 195 Q298 218 300 195" stroke="#a78bfa" stroke-width="1.8" fill="none" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M88 200 Q102 177 116 200 Q130 223 144 200 Q158 177 172 200 Q186 223 200 200 Q214 177 228 200 Q242 223 256 200 Q270 177 284 200 Q298 223 300 200" stroke="#34d399" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M88 205 Q102 182 116 205 Q130 228 144 205 Q158 182 172 205 Q186 228 200 205 Q214 182 228 205 Q242 228 256 205 Q270 182 284 205 Q298 228 300 205" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- Axis -->
+  <line x1="88" y1="200" x2="300" y2="200" stroke="#ffffff" stroke-width="0.4" stroke-opacity="0.15"/>
+
+  <!-- ── HARMONIC SPECTRUM ── -->
+  <rect x="312" y="150" width="104" height="80" rx="7" fill="#ffffff" fill-opacity="0.03" stroke="#6941c6" stroke-width="0.6" stroke-opacity="0.3"/>
+  <text x="364" y="163" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#6941c6" letter-spacing="0.3">HARMONIC SPECTRUM</text>
+  <!-- Bars (harmonic orders) -->
+  <rect x="320" y="215" width="6" height="12" rx="1" fill="url(#purpleG)" opacity="0.9"/>
+  <rect x="330" y="208" width="6" height="19" rx="1" fill="url(#purpleG)" opacity="0.9"/>
+  <rect x="340" y="220" width="6" height="7" rx="1" fill="#f59e0b" opacity="0.8"/>
+  <rect x="350" y="218" width="6" height="9" rx="1" fill="#f59e0b" opacity="0.7"/>
+  <rect x="360" y="221" width="6" height="6" rx="1" fill="#f59e0b" opacity="0.6"/>
+  <rect x="370" y="223" width="6" height="4" rx="1" fill="#f59e0b" opacity="0.5"/>
+  <rect x="380" y="224" width="6" height="3" rx="1" fill="#f59e0b" opacity="0.4"/>
+  <rect x="390" y="225" width="6" height="2" rx="1" fill="#f59e0b" opacity="0.3"/>
+  <line x1="318" y1="227" x2="400" y2="227" stroke="#ffffff" stroke-width="0.4" stroke-opacity="0.2"/>
+  <text x="320" y="236" font-family="system-ui,sans-serif" font-size="7" fill="#6941c6">1  3  5  7  9  11 13 15</text>
+
+  <!-- ── BOTTOM METRICS ROW ── -->
+  <rect x="84" y="238" width="78" height="42" rx="6" fill="#ffffff" fill-opacity="0.04" stroke="#6941c6" stroke-width="0.6" stroke-opacity="0.3"/>
+  <text x="123" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#6941c6" letter-spacing="0.3">POWER FACTOR</text>
+  <text x="123" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#34d399" font-weight="800">0.96</text>
+
+  <rect x="170" y="238" width="78" height="42" rx="6" fill="#ffffff" fill-opacity="0.04" stroke="#f59e0b" stroke-width="0.6" stroke-opacity="0.4"/>
+  <text x="209" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#fcd34d" letter-spacing="0.3">THD VOLTAGE</text>
+  <text x="209" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#fcd34d" font-weight="800">2.6<tspan font-size="9"> %</tspan></text>
+
+  <rect x="256" y="238" width="78" height="42" rx="6" fill="#ffffff" fill-opacity="0.04" stroke="#ef4444" stroke-width="0.6" stroke-opacity="0.4"/>
+  <text x="295" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#f87171" letter-spacing="0.3">THD CURRENT</text>
+  <text x="295" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#f87171" font-weight="800">18.7<tspan font-size="9"> %</tspan></text>
+
+  <rect x="342" y="238" width="78" height="42" rx="6" fill="#ffffff" fill-opacity="0.04" stroke="#6941c6" stroke-width="0.6" stroke-opacity="0.3"/>
+  <text x="381" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" fill="#a78bfa" letter-spacing="0.3">ACTIVE POWER</text>
+  <text x="381" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#a78bfa" font-weight="800">87<tspan font-size="9"> kW</tspan></text>
+
+  <!-- ── STATUS BAR ── -->
+  <rect x="76" y="287" width="348" height="52" rx="0" fill="#6941c6" fill-opacity="0.08"/>
+  <rect x="76" y="326" width="348" height="14" rx="0" fill="#6941c6" fill-opacity="0.08"/>
+
+  <!-- Standards badges -->
+  <rect x="88" y="295" width="64" height="18" rx="4" fill="#6941c6" fill-opacity="0.25" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="120" y="307" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#a78bfa" font-weight="700">IEEE 519</text>
+
+  <rect x="160" y="295" width="80" height="18" rx="4" fill="#10b981" fill-opacity="0.2" stroke="#34d399" stroke-width="0.8"/>
+  <text x="200" y="307" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#34d399" font-weight="700">IEC 61000-4-30</text>
+
+  <rect x="248" y="295" width="64" height="18" rx="4" fill="#f59e0b" fill-opacity="0.2" stroke="#fcd34d" stroke-width="0.8"/>
+  <text x="280" y="307" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#fcd34d" font-weight="700">BIS STANDARDS</text>
+
+  <rect x="320" y="295" width="56" height="18" rx="4" fill="#6941c6" fill-opacity="0.25" stroke="#a78bfa" stroke-width="0.8"/>
+  <text x="348" y="307" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#a78bfa" font-weight="700">CLASS A</text>
+
+  <!-- ── BUTTON ROW ── -->
+  <rect x="84" y="350" width="332" height="52" rx="8" fill="#ffffff" fill-opacity="0.02"/>
+  <!-- Buttons -->
+  <rect x="92" y="358" width="40" height="28" rx="6" fill="#6941c6" fill-opacity="0.3" stroke="#a78bfa" stroke-width="0.7"/>
+  <text x="112" y="376" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#a78bfa">F1</text>
+
+  <rect x="138" y="358" width="40" height="28" rx="6" fill="#6941c6" fill-opacity="0.3" stroke="#a78bfa" stroke-width="0.7"/>
+  <text x="158" y="376" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#a78bfa">F2</text>
+
+  <rect x="184" y="358" width="40" height="28" rx="6" fill="#6941c6" fill-opacity="0.3" stroke="#a78bfa" stroke-width="0.7"/>
+  <text x="204" y="376" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" fill="#a78bfa">F3</text>
+
+  <!-- Power button (orange/amber) -->
+  <circle cx="280" cy="372" r="14" fill="#f59e0b" fill-opacity="0.25" stroke="#fcd34d" stroke-width="1"/>
+  <path d="M280 362 L280 372 M273 365 A10 10 0 1 0 287 365" stroke="#fcd34d" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Nav arrows -->
+  <rect x="308" y="358" width="28" height="28" rx="6" fill="#6941c6" fill-opacity="0.2" stroke="#6941c6" stroke-opacity="0.4" stroke-width="0.7"/>
+  <path d="M322 364 L322 380 M315 372 L329 372" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+
+  <rect x="342" y="358" width="28" height="28" rx="6" fill="#6941c6" fill-opacity="0.2" stroke="#6941c6" stroke-opacity="0.4" stroke-width="0.7"/>
+  <text x="356" y="377" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#a78bfa">OK</text>
+
+  <!-- Pulse dot (live indicator) -->
+  <circle cx="408" cy="372" r="5" fill="#10b981">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="5;7;5" dur="1.4s" repeatCount="indefinite"/>
+  </circle>
+  <text x="408" y="393" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7" fill="#34d399">LIVE</text>
+
+  <!-- Ambient glow blobs -->
+  <circle cx="250" cy="220" r="90" fill="#6941c6" fill-opacity="0.04"/>
+  <circle cx="120" cy="300" r="50" fill="#a78bfa" fill-opacity="0.04"/>
+</svg>

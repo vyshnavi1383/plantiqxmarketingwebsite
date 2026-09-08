@@ -1,0 +1,252 @@
+/* ===========================
+   Responsive Styles - Zoom Safe
+   =========================== */
+
+/* Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* Desktop (1200px - 1399px) */
+@media (max-width: 1399px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Tablet Landscape (992px - 1199px) */
+@media (max-width: 1199px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .testimonial-card.featured {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+}
+
+/* Tablet Portrait (768px - 991px) */
+@media (max-width: 991px) {
+    .navbar-nav {
+        padding: 1rem 0;
+        background: var(--white);
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+    }
+    
+    .nav-link {
+        margin: 0;
+    }
+    
+    .btn-primary,
+    .btn-warning {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-section .d-flex {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .about-section .section-title {
+        max-width: 100% !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .about-section,
+    .services-section,
+    .testimonials-section,
+    .updates-section,
+    .faq-section {
+        padding: 60px 0;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .faq-cta {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+}
+
+/* Mobile (576px - 767px) */
+@media (max-width: 767px) {
+    .brand-text {
+        font-size: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+    }
+    
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+    
+    .slider-controls {
+        padding: 0 1rem;
+    }
+    
+    .slider-prev,
+    .slider-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-description {
+        font-size: 0.95rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-card.featured {
+        grid-column: span 1;
+    }
+    
+    .services-slider {
+        gap: 1rem;
+    }
+    
+    .service-card {
+        min-width: 280px;
+    }
+    
+    .footer-section .col-lg-4,
+    .footer-section .col-lg-2,
+    .footer-section .col-md-6 {
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .accordion-header {
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .accordion-header h5 {
+        font-size: 0.95rem;
+    }
+    
+    .accordion-content p {
+        padding: 0 1.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile (< 576px) */
+@media (max-width: 575px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .service-card {
+        min-width: 260px;
+    }
+    
+    .update-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Zoom Handling - Ensures layout stays consistent at different zoom levels */
+@media (min-resolution: 1.25dppx) {
+    body {
+        font-size: 16px;
+    }
+}
+
+@media (min-resolution: 1.5dppx) {
+    body {
+        font-size: 15px;
+    }
+}
+
+/* Prevent horizontal scroll on all zoom levels */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Ensure images don't break layout on zoom */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Maintain button sizes on zoom */
+.btn {
+    white-space: nowrap;
+}
+
+/* Keep navigation readable on all zoom levels */
+.navbar-nav {
+    flex-wrap: wrap;
+}
