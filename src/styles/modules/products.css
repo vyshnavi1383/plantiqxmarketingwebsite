@@ -179,3 +179,18 @@
   height: 48px;
   object-fit: contain;
 }
+
+/* ── Scroll-stack responsive ── */
+@media (max-width: 768px) {
+  /* On mobile, stack image on top, content below */
+  #products > div > div > div > div {
+    flex-direction: column !important;
+  }
+  #products > div > div > div > div > div:first-child {
+    flex: 0 0 45% !important;
+  }
+  #products > div > div > div > div > div:last-child {
+    flex: 0 0 55% !important;
+    padding: 28px 24px !important;
+  }
+}
