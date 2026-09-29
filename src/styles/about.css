@@ -639,3 +639,140 @@ ction 4: Our Values */
         border-radius: 20px;
     }
 }
+
+/* ===== Intro hero: image as background with brand-colour overlay (added 2026-09-29) =====
+   The photo is portrait (2000x3563), so it is shown in full on the right and a blurred,
+   purple-tinted copy fills the rest of the screen so nothing looks zoomed or stretched. */
+section.about-section.about-intro {
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important;
+    min-height: calc(100vh - 80px);
+    background: #1b0b45;
+    isolation: isolate;
+}
+/* layer 0: blurred full-bleed copy of the image */
+section.about-section.about-intro::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: url('/assets/images/about-intro.jpg') center 45% / cover no-repeat;
+    filter: blur(28px) saturate(1.2);
+    opacity: 0.55;
+    z-index: 0;
+}
+/* layer 1: brand colour wash + tech grid */
+section.about-section.about-intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(247, 148, 29, 0.30), transparent 38%),
+        linear-gradient(90deg, rgba(20, 8, 56, 0.97) 0%, rgba(38, 16, 100, 0.92) 38%, rgba(91, 43, 214, 0.55) 62%, rgba(91, 43, 214, 0.15) 100%),
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px) 0 0 / 44px 44px;
+    z-index: 1;
+    pointer-events: none;
+}
+/* content sits above the colour layers and fills the full hero height */
+section.about-section.about-intro > .container-fluid {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-self: stretch;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+}
+section.about-section.about-intro .content-wrapper {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+}
+/* layer 2: the sharp photo, fitted to the section height on the right */
+section.about-section.about-intro .image-content {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 22%);
+}
+section.about-section.about-intro .image-content img.about-intro-img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: 50% 58%;
+    border-radius: 0;
+    filter: saturate(1.08) contrast(1.03);
+}
+/* purple tint on the photo so it matches the brand */
+section.about-section.about-intro .image-content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(91, 43, 214, 0.10) 0%, rgba(27, 11, 69, 0.35) 100%);
+    mix-blend-mode: multiply;
+}
+/* layer 3: text */
+section.about-section.about-intro .text-content {
+    position: relative;
+    z-index: 3;
+    flex: 0 0 46%;
+    max-width: 640px;
+    padding: 80px 40px 80px 0;
+    animation: aboutIntroIn 0.9s cubic-bezier(.2, .7, .2, 1) both;
+}
+section.about-section.about-intro .section-label {
+    display: inline-block;
+    color: #ffb45e;
+    background: rgba(247, 148, 29, 0.14);
+    border: 1px solid rgba(247, 148, 29, 0.45);
+    padding: 6px 14px;
+    border-radius: 999px;
+    letter-spacing: 2px;
+}
+section.about-section.about-intro h1 {
+    font-size: clamp(38px, 4.4vw, 60px);
+    line-height: 1.1;
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 55%, #d8c8ff 75%, #ffb45e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+section.about-section.about-intro p {
+    color: #ffffff;
+    opacity: 0.92;
+    font-size: 17px;
+    text-shadow: 0 1px 12px rgba(10, 4, 30, 0.55);
+}
+@keyframes aboutIntroIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+}
+@media (max-width: 991px) {
+    section.about-section.about-intro .image-content {
+        width: 100%;
+        -webkit-mask-image: none;
+        mask-image: none;
+        opacity: 0.22;
+    }
+    section.about-section.about-intro::after {
+        background: linear-gradient(180deg, rgba(20, 8, 56, 0.94) 0%, rgba(43, 18, 110, 0.9) 60%, rgba(60, 26, 150, 0.8) 100%);
+    }
+    section.about-section.about-intro .content-wrapper {
+        padding: 0 24px;
+    }
+    section.about-section.about-intro .text-content {
+        flex: 1 1 100%;
+        padding: 64px 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    section.about-section.about-intro .text-content { animation: none; }
+}
