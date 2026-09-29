@@ -1,6 +1,75 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/inner-page.css'
+
+const AGENT_STEPS = [
+  { icon: 'fa-file-alt', title: 'PR received', detail: 'PR-1042 · 250 × Ball bearings 6205', working: 'Reading purchase requisition…' },
+  { icon: 'fa-paper-plane', title: 'RFQs sent', detail: 'Sent to 5 approved vendors', working: 'Selecting approved vendors…' },
+  { icon: 'fa-inbox', title: 'Quotes collected', detail: '4 of 5 vendors responded', working: 'Collecting vendor quotes…' },
+  { icon: 'fa-balance-scale', title: 'Techno-commercial comparison', detail: 'Best value: Vendor B · ₹1.82L', working: 'Comparing price, lead time & specs…', compare: true },
+  { icon: 'fa-user-check', title: 'Approval L1 → L4', detail: 'Approved by Plant Head', working: 'Routing for approval…' },
+  { icon: 'fa-file-signature', title: 'PO released', detail: 'PO-2026-0412 sent to Vendor B', working: 'Generating purchase order…' },
+]
+
+function PoAgentAnimation() {
+  const total = AGENT_STEPS.length
+  const [step, setStep] = useState(0)
+
+  useEffect(() => {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) { setStep(total); return }
+    const id = setInterval(() => setStep(s => (s >= total + 2 ? 0 : s + 1)), 1500)
+    return () => clearInterval(id)
+  }, [total])
+
+  const done = step >= total
+  const status = done ? 'Purchase order released' : AGENT_STEPS[step].working
+  const progress = Math.min(step, total) / total * 100
+
+  return (
+    <div className="po-agent" aria-label="Animated example of the procurement agent moving a requisition to a purchase order">
+      <div className="po-agent-head">
+        <div className={`po-agent-avatar${done ? ' done' : ''}`}><i className="fas fa-robot"></i></div>
+        <div>
+          <div className="po-agent-name">Procurement Agent</div>
+          <div className="po-agent-status">
+            {done ? <i className="fas fa-check-circle"></i> : <span className="po-dots"><i></i><i></i><i></i></span>}
+            <span className="po-status-text" key={status}>{status}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="po-agent-steps">
+        <div className="po-agent-rail"><div className="po-agent-rail-fill" style={{ height: `${progress}%` }}></div></div>
+        {AGENT_STEPS.map((s, i) => {
+          const state = i < step ? 'done' : i === step ? 'active' : 'pending'
+          return (
+            <div className={`po-step ${state}`} key={s.title}>
+              <div className="po-step-icon">
+                <i className={`fas ${state === 'done' ? 'fa-check' : s.icon}`}></i>
+              </div>
+              <div className="po-step-body">
+                <div className="po-step-title">{s.title}</div>
+                <div className="po-step-detail">{state === 'pending' ? 'Waiting' : s.detail}</div>
+                {s.compare && state !== 'pending' && (
+                  <div className="po-compare">
+                    {[['A', 78], ['B', 94], ['C', 64]].map(([v, score]) => (
+                      <div className={`po-compare-row${v === 'B' ? ' best' : ''}`} key={v}>
+                        <span>Vendor {v}</span>
+                        <div className="po-compare-bar"><div style={{ width: `${score}%` }}></div></div>
+                        <b>{score}</b>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 export default function PrToPoAutomation() {
   useEffect(() => { document.title = 'PR to PO Automation - PlantIQX' }, [])
@@ -17,16 +86,6 @@ export default function PrToPoAutomation() {
               <h1>PR to PO Automation</h1>
               <p>Agentic AI that autonomously handles your entire purchase requisition-to-order process — from vendor RFQs to techno-commercial comparison to controlled PO release.</p>
               <Link to="/contact" className="inner-hero-btn">Request a Demo <i className="fas fa-arrow-right"></i></Link>
-            </div>
-            <div className="col-lg-5 d-none d-lg-flex justify-content-center">
-              <div style={{
-                width: '200px', height: '200px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, rgba(120,60,220,0.25), rgba(60,120,220,0.25))',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                border: '2px solid rgba(255,255,255,0.2)'
-              }}>
-                <i className="fas fa-file-invoice-dollar" style={{ fontSize: '80px', color: 'rgba(255,255,255,0.85)' }}></i>
-              </div>
             </div>
           </div>
         </div>
@@ -48,14 +107,8 @@ export default function PrToPoAutomation() {
       <section className="inner-section">
         <div className="container">
           <div className="inner-overview">
-            <div className="asset-image-box d-flex align-items-center justify-content-center" style={{ minHeight: '260px' }}>
-              <div style={{
-                width: '180px', height: '180px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, #7b3fce, #3a78d4)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center'
-              }}>
-                <i className="fas fa-diagram-project" style={{ fontSize: '72px', color: '#fff' }}></i>
-              </div>
+            <div className="po-agent-stage">
+              <PoAgentAnimation />
             </div>
             <div>
               <div className="section-label">What It Does</div>

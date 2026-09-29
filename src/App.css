@@ -182,3 +182,12 @@
     border-right-color: var(--border);
   }
 }
+.about-main-image {
+  width: 110%;
+  height: 750px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 20px;
+  display: block;
+}
+

@@ -13,8 +13,8 @@
 .about-intro {
     display: flex;
     align-items: center;
-    min-height: 100vh;
-    padding: 2rem 0rem !important;
+    min-height: calc(100vh - 80px);
+    padding: 12px 0 !important;
 }
 
 .about-intro .content-wrapper {
@@ -33,16 +33,22 @@
 }
 
 .about-intro .image-content {
-    flex: 0 0 50%;
+    flex: 1 1 55%;
     position: relative;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.about-intro .image-content img {
-    width: 150%;
-    height: 100%;
+.about-intro .image-content img.about-intro-img {
+    height: calc(100vh - 80px - 24px);
+    width: 100%;
+    max-width: 100%;
     object-fit: cover;
+    object-position: center 30%;
+    border-radius: 20px 0 0 20px;
     display: block;
 }
 
@@ -224,6 +230,15 @@
 
     .about-intro .text-content {
         padding: 40px 30px;
+    }
+
+    .about-intro .image-content {
+        height: auto;
+    }
+
+    .about-intro .image-content img.about-intro-img {
+        height: 70vh;
+        border-radius: 20px;
     }
 
     .about-story .content-wrapper,
@@ -608,5 +623,19 @@ ction 4: Our Values */
 
     .stat-card h3 {
         font-size: 36px;
+    }
+}
+
+
+/* About intro: purple heading, image pulled in from the right edge */
+.about-intro h1 {
+    color: var(--primary-color, #6941c6);
+}
+@media (min-width: 993px) {
+    .about-intro .image-content {
+        padding-right: max(24px, calc((100vw - 1310px) / 2)) !important;
+    }
+    .about-intro .image-content img.about-intro-img {
+        border-radius: 20px;
     }
 }

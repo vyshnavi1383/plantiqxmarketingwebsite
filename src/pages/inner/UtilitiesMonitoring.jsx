@@ -9,7 +9,7 @@ export default function UtilitiesMonitoring() {
     <main style={{ paddingTop: '80px' }}>
 
       {/* Hero */}
-      <section className="inner-hero" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section className="inner-hero video-hero" style={{ position: 'relative', overflow: 'hidden' }}>
         <video autoPlay muted loop playsInline
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
           <source src="/assets/videos/utility.mp4" type="video/mp4" />

@@ -9,6 +9,12 @@ export default function Navbar() {
   const [solutionsOpen, setSolutionsOpen] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
+  // Products, Automation and Solutions all live on /products, so pick the active one from ?tab=
+  const productsTab = location.pathname === '/products'
+    ? (new URLSearchParams(location.search).get('tab') || 'products')
+    : null
+  const tabLinkClass = (tab, extra = '') =>
+    `nav-link header-nav-link${extra}${productsTab === tab ? ' active' : ''}`
   const closeTimerRef = useRef({})
 
   // Scroll handler for navbar transparency + logo visibility
@@ -144,8 +150,8 @@ export default function Navbar() {
                 onMouseEnter={handleProductsEnter}
                 onMouseLeave={handleProductsLeave}
               >
-                <NavLink
-                  className={({ isActive }) => `nav-link header-nav-link piqx-dropdown-toggle${isActive ? ' active' : ''}`}
+                <Link
+                  className={tabLinkClass('products', ' piqx-dropdown-toggle')}
                   to="/products"
                   role="button"
                   style={{ fontWeight: 900 }}
@@ -155,7 +161,7 @@ export default function Navbar() {
                   <svg className="dropdown-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10l5 5 5-5z" />
                   </svg>
-                </NavLink>
+                </Link>
                 <ul className="piqx-dropdown-menu">
                   <li>
                     <Link to="/asset-management" onClick={() => { setNavOpen(false); setProductsOpen(false) }}>
@@ -166,7 +172,7 @@ export default function Navbar() {
                   <li>
                     <Link to="/security" onClick={() => { setNavOpen(false); setProductsOpen(false) }}>
                       <span className="ddrop-icon"><i className="fas fa-shield-alt"></i></span>
-                      <span className="ddrop-text"><strong>Gate Management System</strong><small>Gate, visitor &amp; vehicle management</small></span>
+                      <span className="ddrop-text"><strong>Visitor Entry Management System</strong><small>Material, Visitor &amp; Vehicle Management</small></span>
                     </Link>
                   </li>
                   <li>
@@ -204,14 +210,14 @@ export default function Navbar() {
 
               {/* Automation */}
               <li className="nav-item">
-                <NavLink
-                  className={({ isActive }) => `nav-link header-nav-link${isActive ? ' active' : ''}`}
+                <Link
+                  className={tabLinkClass('automation')}
                   to="/products?tab=automation"
                   style={{ fontWeight: 900 }}
                   onClick={() => setNavOpen(false)}
                 >
                   Automation
-                </NavLink>
+                </Link>
               </li>
 
               {/* Solutions Dropdown */}
@@ -220,8 +226,8 @@ export default function Navbar() {
                 onMouseEnter={handleSolutionsEnter}
                 onMouseLeave={handleSolutionsLeave}
               >
-                <NavLink
-                  className={({ isActive }) => `nav-link header-nav-link piqx-dropdown-toggle${isActive ? ' active' : ''}`}
+                <Link
+                  className={tabLinkClass('solutions', ' piqx-dropdown-toggle')}
                   to="/products?tab=solutions"
                   role="button"
                   style={{ fontWeight: 900 }}
@@ -231,7 +237,7 @@ export default function Navbar() {
                   <svg className="dropdown-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10l5 5 5-5z" />
                   </svg>
-                </NavLink>
+                </Link>
                 <ul className="piqx-dropdown-menu">
                   <li>
                     <Link to="/predictive-maintenance" onClick={() => { setNavOpen(false); setSolutionsOpen(false) }}>

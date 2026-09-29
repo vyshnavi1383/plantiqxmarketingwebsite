@@ -5,11 +5,21 @@
 
 /* ---- Hero ---- */
 .inner-hero {
-    padding: 90px 0 70px;
-    background: linear-gradient(135deg, #1a0a3c 0%, #0d1f3c 60%, #0a2a5e 100%);
     position: relative;
     overflow: hidden;
+    min-height: 420px;
+    padding: 90px 0 70px;
+    background: linear-gradient(135deg, #1a0a3c 0%, #0d1f3c 60%, #0a2a5e 100%);
     color: #fff;
+}
+.inner-hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
 }
 .inner-hero::before {
     content: '';
@@ -551,4 +561,501 @@
     display: block;
     object-fit: cover;
     border-radius: inherit;
+}
+
+
+/* Predictive Maintenance: full image beside "What It Does", no padding/cropping */
+.asset-image-box.pm-overview-img {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 20px;
+}
+
+.asset-image-box.pm-overview-img img {
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 18px 40px rgba(20, 16, 60, 0.18);
+}
+
+
+/* Full image beside "What It Does" (no padding, no cropping, keeps image ratio) */
+.asset-image-box.full-overview-img {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-radius: 20px;
+}
+
+.asset-image-box.full-overview-img img {
+    height: auto !important;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 18px 40px rgba(20, 16, 60, 0.18);
+}
+
+
+/* Energy Management: enlarge the analyzer graphic to fill the column, capped to the screen height */
+.asset-image-box.energy-overview-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.asset-image-box.energy-overview-img img {
+    width: 100% !important;
+    max-height: calc(100vh - 160px);
+    object-fit: contain;
+    box-shadow: none;
+}
+
+
+/* Gate Management: module intro + horizontally scrollable cards with arrow buttons */
+.gate-module {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 48px;
+}
+.gate-scroller {
+    position: relative;
+    min-width: 0;
+}
+.gate-scroll-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 8px 4px 16px;
+    scrollbar-width: none;
+}
+.gate-scroll-track::-webkit-scrollbar { display: none; }
+.feature-card.gate-card {
+    flex: 0 0 280px;
+    display: block;
+    scroll-snap-align: start;
+}
+.feature-card.gate-card h4 { margin-top: 16px; }
+.gate-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #6941c6;
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(105, 65, 198, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.gate-scroll-btn:hover { background: #5530b0; transform: translateY(-50%) scale(1.06); }
+.gate-scroll-btn.left { left: -22px; }
+.gate-scroll-btn.right { right: -22px; }
+
+@media (max-width: 992px) {
+    .gate-module { grid-template-columns: 1fr; gap: 24px; }
+    .gate-scroll-btn.left { left: 0; }
+    .gate-scroll-btn.right { right: 0; }
+    .feature-card.gate-card { flex-basis: 260px; }
+}
+
+
+/* PR to PO: animated procurement agent in the hero */
+.po-agent {
+    width: 100%;
+    max-width: 440px;
+    padding: 22px 22px 18px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px rgba(5, 5, 30, 0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+    color: #fff;
+}
+.po-agent-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 16px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.po-agent-avatar {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: linear-gradient(135deg, #7c4dff, #5b3cc4);
+    animation: poPulse 1.8s ease-out infinite;
+}
+.po-agent-avatar.done { background: linear-gradient(135deg, #22c55e, #16a34a); animation: none; }
+@keyframes poPulse {
+    0% { box-shadow: 0 0 0 0 rgba(124, 77, 255, 0.55); }
+    100% { box-shadow: 0 0 0 14px rgba(124, 77, 255, 0); }
+}
+.po-agent-name { font-weight: 700; font-size: 15px; }
+.po-agent-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(220, 212, 255, 0.85);
+    min-height: 18px;
+}
+.po-agent-status .fa-check-circle { color: #4ade80; }
+.po-status-text { animation: poFadeIn 0.4s ease; }
+.po-dots { display: inline-flex; gap: 3px; }
+.po-dots i {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #b69cff;
+    animation: poDot 1s infinite ease-in-out;
+}
+.po-dots i:nth-child(2) { animation-delay: 0.15s; }
+.po-dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes poDot { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+@keyframes poFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.po-agent-steps { position: relative; }
+.po-agent-rail {
+    position: absolute;
+    left: 17px;
+    top: 18px;
+    bottom: 18px;
+    width: 2px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+}
+.po-agent-rail-fill {
+    width: 100%;
+    background: linear-gradient(180deg, #7c4dff, #4ade80);
+    border-radius: 2px;
+    transition: height 0.9s ease;
+}
+.po-step {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    padding: 7px 0;
+    transition: opacity 0.4s ease;
+}
+.po-step.pending { opacity: 0.4; }
+.po-step-icon {
+    position: relative;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: #1e1a4a;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    transition: background 0.4s, border-color 0.4s;
+}
+.po-step.active .po-step-icon {
+    background: #5b3cc4;
+    border-color: #b69cff;
+    animation: poPulse 1.2s ease-out infinite;
+}
+.po-step.done .po-step-icon {
+    background: #16a34a;
+    border-color: #4ade80;
+    color: #fff;
+}
+.po-step-body { min-width: 0; padding-top: 2px; }
+.po-step-title { font-weight: 600; font-size: 14px; line-height: 1.3; }
+.po-step-detail { font-size: 12.5px; color: rgba(220, 212, 255, 0.75); line-height: 1.4; }
+.po-step.active .po-step-detail { color: #fff; animation: poFadeIn 0.4s ease; }
+
+.po-compare {
+    margin-top: 8px;
+    display: grid;
+    gap: 5px;
+    animation: poFadeIn 0.5s ease;
+}
+.po-compare-row {
+    display: grid;
+    grid-template-columns: 62px 1fr 24px;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    color: rgba(220, 212, 255, 0.8);
+}
+.po-compare-row b { font-weight: 700; text-align: right; }
+.po-compare-bar { height: 6px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
+.po-compare-bar div {
+    height: 100%;
+    border-radius: 4px;
+    background: rgba(182, 156, 255, 0.7);
+    transform-origin: left;
+    animation: poGrow 0.9s ease;
+}
+.po-compare-row.best { color: #fff; }
+.po-compare-row.best .po-compare-bar div { background: linear-gradient(90deg, #ff9f45, #ffcf7a); }
+.po-compare-row.best b { color: #ffcf7a; }
+@keyframes poGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .po-agent, .po-agent * { animation: none !important; transition: none !important; }
+}
+
+
+/* PR to PO: agent animation shown beside "What It Does" on a dark rounded stage */
+.po-agent-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 24px;
+    border-radius: 20px;
+    background:
+        radial-gradient(420px 320px at 70% 30%, rgba(124, 77, 255, 0.35), transparent 70%),
+        linear-gradient(135deg, #1a1240 0%, #0f1a3a 100%);
+    box-shadow: 0 18px 40px rgba(20, 16, 60, 0.18);
+}
+
+
+/* Quality Automation: digital inspection form illustration beside "What It Does" */
+.qa-stage {
+    position: relative;
+    padding: 36px 32px 56px;
+    border-radius: 20px;
+    background:
+        radial-gradient(380px 260px at 85% 10%, rgba(124, 77, 255, 0.16), transparent 70%),
+        linear-gradient(135deg, #f4f0ff 0%, #eef2ff 100%);
+}
+.qa-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px 20px 16px;
+    box-shadow: 0 20px 45px rgba(40, 24, 110, 0.14);
+    border: 1px solid #ece7fb;
+}
+.qa-card-head { display: flex; align-items: center; gap: 12px; }
+.qa-card-icon {
+    width: 42px; height: 42px; flex: 0 0 42px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #7c4dff, #5b3cc4);
+    color: #fff; font-size: 18px;
+}
+.qa-card-title { font-weight: 700; font-size: 15px; color: #1a1240; }
+.qa-card-sub { font-size: 12.5px; color: #7a7597; }
+.qa-badge {
+    margin-left: auto;
+    font-size: 11.5px; font-weight: 700;
+    padding: 5px 10px; border-radius: 20px;
+}
+.qa-badge.warn { background: #fff1e6; color: #e8590c; }
+.qa-trace {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 14px 0 12px;
+}
+.qa-trace span {
+    font-size: 11.5px; font-weight: 600; color: #5b3cc4;
+    background: #f1ecff; border-radius: 8px; padding: 5px 9px;
+}
+.qa-trace i { margin-right: 4px; opacity: 0.8; }
+.qa-table { display: grid; gap: 4px; }
+.qa-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1.3fr 0.9fr 26px;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: #2d2850;
+    background: #faf9ff;
+    animation: qaIn 0.5s ease both;
+}
+.qa-row-head {
+    background: transparent;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: #9a95b5;
+    padding-top: 0; padding-bottom: 2px;
+    animation: none;
+}
+.qa-spec { color: #7a7597; }
+.qa-val { font-weight: 700; }
+.qa-row.fail { background: #fff4f2; }
+.qa-row.fail .qa-val { color: #e03131; }
+.qa-status {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: #fff;
+}
+.qa-status.ok { background: #2fb344; }
+.qa-status.bad { background: #e03131; box-shadow: 0 0 0 4px rgba(224, 49, 49, 0.15); }
+.qa-alert {
+    margin-top: 12px;
+    font-size: 12px; font-weight: 600; color: #c2410c;
+    background: #fff7ed; border: 1px solid #fed7aa;
+    border-radius: 10px; padding: 8px 10px;
+}
+.qa-alert i { margin-right: 6px; }
+.qa-dossier {
+    position: absolute;
+    right: 18px; bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 14px 32px rgba(40, 24, 110, 0.18);
+    border: 1px solid #ece7fb;
+    animation: qaIn 0.6s ease 0.8s both;
+}
+.qa-dossier-icon {
+    width: 34px; height: 34px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff1e6; color: #f76707; font-size: 16px;
+}
+.qa-dossier-title { font-weight: 700; font-size: 13px; color: #1a1240; }
+.qa-dossier-sub { font-size: 11.5px; color: #7a7597; }
+.qa-dossier-check { color: #2fb344; font-size: 18px; }
+@keyframes qaIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (max-width: 576px) {
+    .qa-stage { padding: 24px 16px 80px; }
+    .qa-row { grid-template-columns: 1.2fr 1.2fr 0.9fr 24px; font-size: 11.5px; padding: 7px 8px; }
+    .qa-spec { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .qa-row, .qa-dossier { animation: none; }
+}
+
+/* Quality Automation: card fills the column with no surrounding panel/padding */
+.qa-stage {
+    padding: 0 0 36px !important;
+    background: none !important;
+    border-radius: 0;
+}
+.qa-dossier { right: 16px; bottom: 0; }
+@media (max-width: 576px) {
+    .qa-stage { padding: 0 0 70px !important; }
+}
+
+/* Video heroes (Asset Management, Surveillance, Utilities Monitoring):
+   same height on all three, sized to the videos' 832x464 shape so the whole frame is visible */
+.inner-hero.video-hero {
+    aspect-ratio: 832 / 464;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+.inner-hero.video-hero > .container { width: 100%; }
+.inner-hero.video-hero video { object-fit: cover; }
+
+/* On narrow screens the video shape would be too short for the text, so fall back to a fixed height */
+@media (max-width: 991px) {
+    .inner-hero.video-hero {
+        aspect-ratio: auto;
+        min-height: 480px;
+        padding: 60px 0;
+    }
+}
+
+/* All product & solution heroes: one shared, shorter height */
+.inner-hero,
+.inner-hero.video-hero {
+    height: 520px;
+    min-height: 520px !important;
+    aspect-ratio: auto;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.inner-hero > .container { width: 100%; }
+
+@media (max-width: 991px) {
+    .inner-hero,
+    .inner-hero.video-hero {
+        height: auto;
+        min-height: 460px !important;
+        padding: 60px 0 !important;
+    }
+}
+
+/* Visitor Entry: fix cards being forced into a row by the home-page .feature-card style */
+.gate-scroll-track .feature-card.gate-card {
+    display: block !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    height: auto;
+}
+.gate-module { align-items: start; }
+
+/* Visitor Entry: animated agent walkthrough under each module's description */
+.gate-flow {
+    margin-top: 8px;
+    padding: 18px 18px 12px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #1a1240 0%, #14184a 100%);
+    color: #fff;
+    box-shadow: 0 18px 40px rgba(26, 18, 64, 0.22);
+}
+.gate-flow-head {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 12px; margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.gate-flow-bot {
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+    background: linear-gradient(135deg, #7c4dff, #5b3cc4);
+    animation: poPulse 1.8s ease-out infinite;
+}
+.gate-flow-bot.done { background: linear-gradient(135deg, #22c55e, #16a34a); animation: none; }
+.gate-flow-name { font-weight: 700; font-size: 14px; }
+.gate-flow-status {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: rgba(220, 212, 255, 0.85);
+    animation: poFadeIn 0.4s ease;
+}
+.gate-flow-status .fa-check-circle { color: #4ade80; }
+.gate-flow-steps { position: relative; }
+.gate-flow-rail {
+    position: absolute; left: 15px; top: 16px; bottom: 16px; width: 2px;
+    background: rgba(255,255,255,0.12); border-radius: 2px;
+}
+.gate-flow-rail div {
+    width: 100%; border-radius: 2px;
+    background: linear-gradient(180deg, #7c4dff, #4ade80);
+    transition: height 0.8s ease;
+}
+.gate-flow-step { position: relative; display: flex; gap: 12px; padding: 6px 0; transition: opacity 0.4s; }
+.gate-flow-step.pending { opacity: 0.4; }
+.gate-flow-icon {
+    position: relative; z-index: 1;
+    width: 32px; height: 32px; flex: 0 0 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+    background: #1e1a4a; border: 1.5px solid rgba(255,255,255,0.2);
+    transition: background 0.4s, border-color 0.4s;
+}
+.gate-flow-step.active .gate-flow-icon { background: #5b3cc4; border-color: #b69cff; animation: poPulse 1.2s ease-out infinite; }
+.gate-flow-step.done .gate-flow-icon { background: #16a34a; border-color: #4ade80; }
+.gate-flow-title { font-weight: 600; font-size: 13.5px; line-height: 1.3; }
+.gate-flow-detail { font-size: 12px; color: rgba(220, 212, 255, 0.75); }
+.gate-flow-step.active .gate-flow-detail { color: #fff; animation: poFadeIn 0.4s ease; }
+@media (prefers-reduced-motion: reduce) {
+    .gate-flow, .gate-flow * { animation: none !important; transition: none !important; }
 }

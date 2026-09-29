@@ -9,17 +9,18 @@ export default function ConditionMonitoring() {
     <main style={{ paddingTop: '80px' }}>
 
       {/* Hero */}
-      <section className="inner-hero">
-        <div className="container">
-          <div className="row align-items-center g-5">
+      <section className="inner-hero" style={{
+        background: "url('/assets/images/condition-monitoring-banner.jpg') right center / cover no-repeat",
+        position: 'relative'
+      }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg,rgba(26,18,64,0.85) 0%,rgba(26,18,64,0.45) 40%,rgba(15,26,58,0) 65%)' }}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="row">
             <div className="col-lg-6">
               <div className="inner-hero-label">Solution</div>
               <h1>Condition Monitoring<br /><span>Always-On Equipment Health</span></h1>
               <p>Continuously track the health of your industrial equipment through vibration, temperature, and performance data — catching faults early before they become failures.</p>
               <Link to="/contact" className="inner-hero-btn">Request a Demo <i className="fas fa-arrow-right"></i></Link>
-            </div>
-            <div className="col-lg-6 text-center">
-              <img src="/assets/svg/AssetDetails.svg" alt="Condition Monitoring" className="inner-hero-img" style={{ maxWidth: '380px', width: '100%' }} />
             </div>
           </div>
         </div>
@@ -41,8 +42,8 @@ export default function ConditionMonitoring() {
       <section className="inner-section">
         <div className="container">
           <div className="inner-overview">
-            <div className="asset-image-box">
-              <img src="/assets/svg/Advance.svg" alt="Condition Monitoring" />
+            <div className="asset-image-box full-overview-img">
+              <img src="/assets/images/condition-monitoring-overview.jpg" alt="Technician monitoring vibration, thermal and performance data on an industrial pump" />
             </div>
             <div>
               <div className="section-label">What It Does</div>

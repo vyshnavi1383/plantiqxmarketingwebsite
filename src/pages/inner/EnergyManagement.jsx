@@ -10,13 +10,17 @@ export default function EnergyManagement() {
 
       {/* Hero */}
       <section className="inner-hero" style={{
-        background: "url('/assets/images/enery management banner.webp') center center / cover no-repeat",
-        position: 'relative'
+        background: "url('/assets/images/energy-management-banner.jpg') right center / auto 100% no-repeat, #130d3b",
+        minHeight: '570px',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(26,10,60,0.75) 0%,rgba(13,31,60,0.65) 60%,rgba(10,42,94,0.6) 100%)' }}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(19,13,59,0.6) 0%, rgba(19,13,59,0.25) 40%, rgba(19,13,59,0) 60%)' }}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
           <div className="row">
-            <div className="col-lg-8 col-xl-7">
+            <div className="col-lg-6">
               <div className="inner-hero-label">Solution</div>
               <h1>Power Quality<br /><span>Analysis &amp; Optimization</span></h1>
               <p>Poor power quality costs more than you think. PlantIQX measures, analyses, and optimises your facility's power parameters — eliminating energy losses, preventing equipment failures, and improving plant reliability across every industry.</p>
@@ -42,8 +46,8 @@ export default function EnergyManagement() {
       <section className="inner-section">
         <div className="container">
           <div className="inner-overview">
-            <div className="asset-image-box" style={{ background: '#f0ebff', borderRadius: '16px', padding: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img src="/assets/svg/power-management-icon.svg" alt="Power Management" style={{ maxWidth: '320px', width: '100%' }} />
+            <div className="asset-image-box full-overview-img energy-overview-img">
+              <img src="/assets/svg/power-management-panel.svg" alt="PlantIQX power quality analyzer" />
             </div>
             <div>
               <div className="section-label">Power Quality Monitoring</div>

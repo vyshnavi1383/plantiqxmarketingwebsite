@@ -18,9 +18,6 @@ export default function FreightBid() {
               <p>Digitize your entire freight procurement process — from bid creation to carrier selection — with intelligent automation that cuts costs and eliminates logistics delays.</p>
               <Link to="/contact" className="inner-hero-btn">Request a Demo <i className="fas fa-arrow-right"></i></Link>
             </div>
-            <div className="col-lg-5 d-none d-lg-flex justify-content-center">
-              <img src="/assets/images/freightbid-original.png" alt="FreightBid" style={{ maxWidth: '420px', width: '100%' }} />
-            </div>
           </div>
         </div>
       </section>

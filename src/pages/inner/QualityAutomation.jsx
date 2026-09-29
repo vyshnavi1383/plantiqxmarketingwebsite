@@ -2,6 +2,67 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/inner-page.css'
 
+const QA_ROWS = [
+  { param: 'Outer diameter', spec: '52.00 ± 0.02 mm', value: '52.01 mm', ok: true },
+  { param: 'Bore diameter', spec: '25.00 ± 0.01 mm', value: '25.00 mm', ok: true },
+  { param: 'Width', spec: '15.00 ± 0.05 mm', value: '15.08 mm', ok: false },
+  { param: 'Surface roughness', spec: '≤ 0.8 Ra', value: '0.6 Ra', ok: true },
+  { param: 'Hardness', spec: '58–62 HRC', value: '60 HRC', ok: true },
+]
+
+function QaInspectionCard() {
+  return (
+    <div className="qa-stage">
+      <div className="qa-card" aria-label="Example digital inspection form with automatic tolerance validation">
+        <div className="qa-card-head">
+          <div className="qa-card-icon"><i className="fas fa-clipboard-check"></i></div>
+          <div>
+            <div className="qa-card-title">Final Inspection Form</div>
+            <div className="qa-card-sub">Bearing housing · Rev C</div>
+          </div>
+          <span className="qa-badge warn">1 deviation</span>
+        </div>
+
+        <div className="qa-trace">
+          <span><i className="fas fa-briefcase"></i> Job JO-2231</span>
+          <span><i className="fas fa-layer-group"></i> Batch B-07</span>
+          <span><i className="fas fa-barcode"></i> SN 000418</span>
+        </div>
+
+        <div className="qa-table">
+          <div className="qa-row qa-row-head">
+            <span>Parameter</span><span>Tolerance</span><span>Measured</span><span></span>
+          </div>
+          {QA_ROWS.map((r, i) => (
+            <div className={`qa-row${r.ok ? '' : ' fail'}`} key={r.param} style={{ animationDelay: `${i * 0.12}s` }}>
+              <span>{r.param}</span>
+              <span className="qa-spec">{r.spec}</span>
+              <span className="qa-val">{r.value}</span>
+              <span className={`qa-status ${r.ok ? 'ok' : 'bad'}`}>
+                <i className={`fas ${r.ok ? 'fa-check' : 'fa-times'}`}></i>
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div className="qa-alert">
+          <i className="fas fa-exclamation-triangle"></i>
+          Width out of spec (+0.08 mm) — NCR raised & QA lead notified
+        </div>
+      </div>
+
+      <div className="qa-dossier">
+        <div className="qa-dossier-icon"><i className="fas fa-file-pdf"></i></div>
+        <div>
+          <div className="qa-dossier-title">Quality dossier ready</div>
+          <div className="qa-dossier-sub">JO-2231 · 24 reports · signed</div>
+        </div>
+        <i className="fas fa-check-circle qa-dossier-check"></i>
+      </div>
+    </div>
+  )
+}
+
 export default function QualityAutomation() {
   useEffect(() => { document.title = 'Quality Automation - PlantIQX' }, [])
 
@@ -17,16 +78,6 @@ export default function QualityAutomation() {
               <h1>Quality Automation</h1>
               <p>Digitize inspection forms, enforce tolerances automatically, and generate quality dossiers — building a complete, traceable quality record for every job and component.</p>
               <Link to="/contact" className="inner-hero-btn">Request a Demo <i className="fas fa-arrow-right"></i></Link>
-            </div>
-            <div className="col-lg-5 d-none d-lg-flex justify-content-center">
-              <div style={{
-                width: '200px', height: '200px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, rgba(120,60,220,0.25), rgba(60,120,220,0.25))',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                border: '2px solid rgba(255,255,255,0.2)'
-              }}>
-                <i className="fas fa-clipboard-check" style={{ fontSize: '80px', color: 'rgba(255,255,255,0.85)' }}></i>
-              </div>
             </div>
           </div>
         </div>
@@ -48,15 +99,7 @@ export default function QualityAutomation() {
       <section className="inner-section">
         <div className="container">
           <div className="inner-overview">
-            <div className="asset-image-box d-flex align-items-center justify-content-center" style={{ minHeight: '260px' }}>
-              <div style={{
-                width: '180px', height: '180px', borderRadius: '50%',
-                background: 'linear-gradient(135deg, #7b3fce, #3a78d4)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center'
-              }}>
-                <i className="fas fa-microscope" style={{ fontSize: '72px', color: '#fff' }}></i>
-              </div>
-            </div>
+            <QaInspectionCard />
             <div>
               <div className="section-label">What It Does</div>
               <h2 className="section-title">Build a Digital Quality Record for Every Job</h2>

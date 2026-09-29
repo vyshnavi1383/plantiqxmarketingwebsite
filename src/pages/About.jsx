@@ -65,7 +65,11 @@ export default function About() {
                 command.</p>
             </div>
             <div className="image-content">
-              <img src="/assets/svg/wellcomeDashboard.svg" alt="PlantIQX dashboard" style={{ borderRadius: '20px' }} />
+              <img
+                src="/assets/images/about-intro.jpg"
+                alt="PlantIQX intelligent workspace"
+                className="about-intro-img"
+              />
             </div>
           </div>
         </div>
@@ -74,9 +78,9 @@ export default function About() {
       {/* Section 2: Our Story */}
       <section className="about-section about-story" style={{ padding: '100px 0', backgroundColor: '#ffffff' }}>
         <div className="container">
-          <div className="content-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '100px' }}>
+          <div className="content-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <div className="image-content" style={{ flex: '0 0 45%' }}>
-              <img src="/assets/svg/OurStory.svg" alt="PlantIQX Journey" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              <img src="/assets/svg/our-story-modules.svg" alt="PlantIQX platform modules" style={{ width: '100%', height: 'auto', display: 'block' }} />
             </div>
             <div className="text-content" style={{ flex: 1 }}>
               <div className="section-label" style={{ color: '#6941C6', fontSize: '14px', fontWeight: 600, letterSpacing: '1px', marginBottom: '20px', display: 'block' }}>Our Story</div>

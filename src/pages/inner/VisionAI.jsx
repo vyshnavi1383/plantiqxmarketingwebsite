@@ -10,13 +10,17 @@ export default function VisionAI() {
 
       {/* Hero */}
       <section className="inner-hero" style={{
-        background: "url('/assets/images/vision ai banner.png') center center / cover no-repeat",
-        position: 'relative'
+        background: "url('/assets/images/vision-ai-banner.jpg') right center / auto 100% no-repeat, #10103f",
+        minHeight: '570px',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(26,10,60,0.78) 0%,rgba(13,31,60,0.68) 60%,rgba(10,42,94,0.62) 100%)' }}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(16,16,63,0.6) 0%, rgba(16,16,63,0.25) 40%, rgba(16,16,63,0) 60%)' }}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
           <div className="row">
-            <div className="col-lg-8 col-xl-7">
+            <div className="col-lg-6">
               <div className="inner-hero-label">Solution</div>
               <h1>Vision AI<br /><span>Teaching Machines to See &amp; Act</span></h1>
               <p>Deep learning–powered visual intelligence that automates defect detection, enforces worker safety, prevents equipment failure, and drives measurable efficiency gains across your industrial facility.</p>
@@ -42,8 +46,8 @@ export default function VisionAI() {
       <section className="inner-section">
         <div className="container">
           <div className="inner-overview">
-            <div className="asset-image-box">
-              <img src="/assets/svg/ArtificialInteligence.svg" alt="Vision AI Overview" />
+            <div className="asset-image-box full-overview-img">
+              <img src="/assets/images/vision-ai-overview.jpg" alt="AI camera inspecting parts on a conveyor with defect and PPE detection" />
             </div>
             <div>
               <div className="section-label">What Is Vision AI</div>

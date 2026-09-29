@@ -1,11 +1,146 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/inner-page.css'
+
+
+const MODULES = [
+  {
+    key: 'visitor', icon: 'fa-user-check', title: 'Visitor Management',
+    desc: 'Digitize every visitor interaction from pre-registration to exit — eliminating paper registers, reducing gate queues, and maintaining a real-time record of everyone on-site.',
+    cards: [
+      { icon: 'fa-calendar-plus', title: 'Pre-Registration & Scheduling', desc: 'Hosts can register expected visitors in advance with purpose, duration, and access zone details.' },
+      { icon: 'fa-qrcode', title: 'QR-Based Entry Passes', desc: 'Issue digital passes via email or SMS that guards scan at entry — no paper slips, no manual verification.' },
+      { icon: 'fa-id-badge', title: 'Digital ID Verification', desc: 'Capture and store visitor ID details, photos, and purpose of visit with every check-in record.' },
+      { icon: 'fa-map-marked-alt', title: 'Zone Access Control', desc: 'Restrict visitor access to specific areas and track their movement across authorized zones only.' },
+      { icon: 'fa-sign-out-alt', title: 'Automated Check-Out', desc: 'Record exit times automatically with timestamps for complete on-site duration tracking and reporting.' },
+      { icon: 'fa-file-alt', title: 'Compliance-Ready Reports', desc: 'Generate visit history reports, audit logs, and emergency evacuation lists on demand.' },
+    ],
+  },
+  {
+    key: 'vehicle', icon: 'fa-truck', title: 'Vehicle Management',
+    desc: 'Track every vehicle entering and exiting your facility — from delivery trucks to employee vehicles — with digital logs, weighbridge integration, and real-time status dashboards.',
+    cards: [
+      { icon: 'fa-car', title: 'License Plate Capture', desc: 'Automatic or manual plate number logging at entry and exit — cross-referenced against approved vendor and employee lists.' },
+      { icon: 'fa-weight', title: 'Weighbridge Integration', desc: 'Connect to weighbridge systems for gross and tare weight capture, with digital challan generation for goods vehicles.' },
+      { icon: 'fa-parking', title: 'Parking Management', desc: 'Assign parking bays, track occupancy, and manage visitor and employee vehicle allocation in real time.' },
+      { icon: 'fa-clock', title: 'TAT Monitoring', desc: 'Track turnaround time for delivery vehicles — identifying delays at loading bays and dock bottlenecks.' },
+      { icon: 'fa-user-shield', title: 'Driver Verification', desc: 'Record driver name, licence, and contact details at the gate, with photo capture for every trip.' },
+      { icon: 'fa-clipboard-list', title: 'Digital Gate Pass', desc: 'Generate vehicle gate passes with QR verification, driver details, and authorized signatory records.' },
+    ],
+  },
+  {
+    key: 'material', icon: 'fa-boxes', title: 'Material Management',
+    desc: 'Control every item that moves through your gates — inward, outward, and returnable — with digital records matched to purchase orders, invoices, and approvals.',
+    cards: [
+      { icon: 'fa-arrow-circle-down', title: 'Inward Material Entry', desc: 'Log incoming goods against purchase orders and invoices at the gate, with quantity and vendor details.' },
+      { icon: 'fa-arrow-circle-up', title: 'Outward Material Tracking', desc: 'Record every outgoing consignment with delivery notes, destination, and authorizing department.' },
+      { icon: 'fa-undo-alt', title: 'Returnable Gate Passes', desc: 'Track tools, equipment, and samples sent out for repair or trial, with due dates and return alerts.' },
+      { icon: 'fa-file-invoice', title: 'PO & Invoice Matching', desc: 'Automatically match gate entries to purchase orders to flag short, excess, or unapproved deliveries.' },
+      { icon: 'fa-check-double', title: 'Approval Workflows', desc: 'Route material passes to the right approvers digitally — no material leaves without authorization.' },
+      { icon: 'fa-chart-bar', title: 'Material Movement Reports', desc: 'Get real-time and historical reports of all material movement for audits and stock reconciliation.' },
+    ],
+  },
+]
+
+const FLOWS = {
+  visitor: [
+    { icon: 'fa-calendar-plus', title: 'Host pre-registers visitor', detail: 'Ravi K. · Vendor meeting · 11:00 AM' },
+    { icon: 'fa-qrcode', title: 'QR pass sent', detail: 'Digital pass delivered by SMS & email' },
+    { icon: 'fa-id-card', title: 'Scanned & ID verified at gate', detail: 'Photo captured · ID matched' },
+    { icon: 'fa-bell', title: 'Host notified, access granted', detail: 'Zone B · Meeting room 2' },
+    { icon: 'fa-sign-out-alt', title: 'Checked out automatically', detail: 'On-site 1h 42m · Record logged' },
+  ],
+  vehicle: [
+    { icon: 'fa-car', title: 'Vehicle arrives, plate captured', detail: 'TN 09 AB 4521 · Delivery truck' },
+    { icon: 'fa-list-check', title: 'Matched to approved vendor', detail: 'Driver verified · Trip #V-882' },
+    { icon: 'fa-weight', title: 'Gross weight recorded', detail: 'Weighbridge · 18,420 kg' },
+    { icon: 'fa-clock', title: 'Unloading tracked at dock', detail: 'Dock 3 · TAT 38 min' },
+    { icon: 'fa-clipboard-list', title: 'Gate pass issued, exit logged', detail: 'Tare 7,960 kg · Net 10,460 kg' },
+  ],
+  material: [
+    { icon: 'fa-arrow-circle-down', title: 'Inward material logged', detail: 'PO-5512 · 120 × valve kits' },
+    { icon: 'fa-file-invoice', title: 'Matched to PO & invoice', detail: 'Qty ✓ · Price ✓ · Vendor ✓' },
+    { icon: 'fa-check-double', title: 'Approval routed', detail: 'Approved by Stores In-charge' },
+    { icon: 'fa-undo-alt', title: 'Returnable pass tracked', detail: 'Tools out for repair · Due in 5 days' },
+    { icon: 'fa-chart-bar', title: 'Stock & audit report updated', detail: 'Movement synced in real time' },
+  ],
+}
+
+function GateFlowAnimation({ moduleKey }) {
+  const steps = FLOWS[moduleKey] || []
+  const total = steps.length
+  const [step, setStep] = useState(0)
+
+  useEffect(() => {
+    setStep(0)
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) { setStep(total); return }
+    const id = setInterval(() => setStep(s => (s >= total + 2 ? 0 : s + 1)), 1400)
+    return () => clearInterval(id)
+  }, [moduleKey, total])
+
+  const done = step >= total
+  return (
+    <div className="gate-flow" aria-label="Animated example of the process">
+      <div className="gate-flow-head">
+        <div className={`gate-flow-bot${done ? ' done' : ''}`}><i className="fas fa-robot"></i></div>
+        <div>
+          <div className="gate-flow-name">PlantIQX Agent · live example</div>
+          <div className="gate-flow-status" key={step}>
+            {done ? <><i className="fas fa-check-circle"></i> Process complete</> : <><span className="po-dots"><i></i><i></i><i></i></span> {steps[step].title}…</>}
+          </div>
+        </div>
+      </div>
+      <div className="gate-flow-steps">
+        <div className="gate-flow-rail"><div style={{ height: `${Math.min(step, total) / total * 100}%` }}></div></div>
+        {steps.map((s, i) => {
+          const state = i < step ? 'done' : i === step ? 'active' : 'pending'
+          return (
+            <div className={`gate-flow-step ${state}`} key={s.title}>
+              <div className="gate-flow-icon"><i className={`fas ${state === 'done' ? 'fa-check' : s.icon}`}></i></div>
+              <div>
+                <div className="gate-flow-title">{s.title}</div>
+                <div className="gate-flow-detail">{state === 'pending' ? 'Waiting' : s.detail}</div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function CardScroller({ cards }) {
+  const ref = useRef(null)
+  const scroll = (dir) => {
+    const el = ref.current
+    if (el) el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: 'smooth' })
+  }
+  return (
+    <div className="gate-scroller">
+      <button type="button" className="gate-scroll-btn left" aria-label="Scroll left" onClick={() => scroll(-1)}>
+        <i className="fas fa-chevron-left"></i>
+      </button>
+      <div className="gate-scroll-track" ref={ref}>
+        {cards.map(({ icon, title, desc }) => (
+          <div className="feature-card gate-card" key={title}>
+            <div className="feature-card-icon"><i className={`fas ${icon}`}></i></div>
+            <h4>{title}</h4>
+            <p>{desc}</p>
+          </div>
+        ))}
+      </div>
+      <button type="button" className="gate-scroll-btn right" aria-label="Scroll right" onClick={() => scroll(1)}>
+        <i className="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  )
+}
 
 export default function Security() {
   const [activeTab, setActiveTab] = useState('visitor')
 
-  useEffect(() => { document.title = 'Security & Gate Management - PlantIQX' }, [])
+  useEffect(() => { document.title = 'Visitor Entry Management System - PlantIQX' }, [])
 
   return (
     <main style={{ paddingTop: '80px' }}>
@@ -16,12 +151,9 @@ export default function Security() {
           <div className="row align-items-center">
             <div className="col-lg-7">
               <div className="z-label">Product</div>
-              <h1>Security &amp; Gate Management</h1>
+              <h1>Visitor Entry Management System</h1>
               <p>Control every entry point with digital visitor logs, vehicle tracking, and real-time access management — replacing manual registers with intelligent, audit-ready systems.</p>
               <Link to="/contact" className="inner-hero-btn">Request a Demo <i className="fas fa-arrow-right"></i></Link>
-            </div>
-            <div className="col-lg-5 d-none d-lg-flex justify-content-center">
-              <img src="/assets/svg/BlockChain.svg" alt="Security" style={{ maxWidth: '380px', width: '100%', opacity: 0.9 }} />
             </div>
           </div>
         </div>
@@ -50,83 +182,31 @@ export default function Security() {
 
           {/* Tab Buttons */}
           <div className="d-flex justify-content-center gap-3 mb-5" style={{ flexWrap: 'wrap' }}>
-            <button
-              className={`btn ${activeTab === 'visitor' ? 'btn-primary' : 'btn-outline-primary'}`}
-              style={{ borderRadius: '50px', padding: '10px 28px', fontWeight: 600 }}
-              onClick={() => setActiveTab('visitor')}
-            >
-              <i className="fas fa-user-check me-2"></i>Visitor Management
-            </button>
-            <button
-              className={`btn ${activeTab === 'vehicle' ? 'btn-primary' : 'btn-outline-primary'}`}
-              style={{ borderRadius: '50px', padding: '10px 28px', fontWeight: 600 }}
-              onClick={() => setActiveTab('vehicle')}
-            >
-              <i className="fas fa-truck me-2"></i>Vehicle Management
-            </button>
+            {MODULES.map(m => (
+              <button
+                key={m.key}
+                className={`btn ${activeTab === m.key ? 'btn-primary' : 'btn-outline-primary'}`}
+                style={{ borderRadius: '50px', padding: '10px 28px', fontWeight: 600 }}
+                onClick={() => setActiveTab(m.key)}
+              >
+                <i className={`fas ${m.icon} me-2`}></i>{m.title}
+              </button>
+            ))}
           </div>
 
-          {/* Visitor Management Tab */}
-          {activeTab === 'visitor' && (
-            <div>
-              <div className="inner-overview mb-5">
-                <div style={{ flex: '1 1 300px' }}>
-                  <div className="feature-card-icon" style={{ width: '64px', height: '64px', fontSize: '28px', marginBottom: '20px' }}>
-                    <i className="fas fa-user-check"></i>
-                  </div>
-                  <h3 style={{ fontWeight: 700, marginBottom: '16px' }}>Visitor Management</h3>
-                  <p style={{ color: '#555', marginBottom: '20px' }}>Digitize every visitor interaction from pre-registration to exit — eliminating paper registers, reducing gate queues, and maintaining a real-time record of everyone on-site.</p>
+          {MODULES.filter(m => m.key === activeTab).map(m => (
+            <div className="gate-module" key={m.key}>
+              <div className="gate-module-intro">
+                <div className="feature-card-icon" style={{ width: '64px', height: '64px', fontSize: '28px', marginBottom: '20px' }}>
+                  <i className={`fas ${m.icon}`}></i>
                 </div>
-                <div className="feature-cards-grid" style={{ flex: '2 1 500px' }}>
-                  {[
-                    { icon: 'fa-calendar-plus', title: 'Pre-Registration & Scheduling', desc: 'Hosts can register expected visitors in advance with purpose, duration, and access zone details.' },
-                    { icon: 'fa-qrcode', title: 'QR-Based Entry Passes', desc: 'Issue digital passes via email or SMS that guards scan at entry — no paper slips, no manual verification.' },
-                    { icon: 'fa-id-badge', title: 'Digital ID Verification', desc: 'Capture and store visitor ID details, photos, and purpose of visit with every check-in record.' },
-                    { icon: 'fa-map-marked-alt', title: 'Zone Access Control', desc: 'Restrict visitor access to specific areas and track their movement across authorized zones only.' },
-                    { icon: 'fa-sign-out-alt', title: 'Automated Check-Out', desc: 'Record exit times automatically with timestamps for complete on-site duration tracking and reporting.' },
-                    { icon: 'fa-file-alt', title: 'Compliance-Ready Reports', desc: 'Generate visit history reports, audit logs, and emergency evacuation lists on demand.' },
-                  ].map(({ icon, title, desc }) => (
-                    <div className="feature-card" key={title}>
-                      <div className="feature-card-icon"><i className={`fas ${icon}`}></i></div>
-                      <h4>{title}</h4>
-                      <p>{desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+                <h3 style={{ fontWeight: 700, marginBottom: '16px' }}>{m.title}</h3>
+                <p style={{ color: '#555', marginBottom: '20px' }}>{m.desc}</p>
 
-          {/* Vehicle Management Tab */}
-          {activeTab === 'vehicle' && (
-            <div>
-              <div className="inner-overview mb-5">
-                <div style={{ flex: '1 1 300px' }}>
-                  <div className="feature-card-icon" style={{ width: '64px', height: '64px', fontSize: '28px', marginBottom: '20px' }}>
-                    <i className="fas fa-truck"></i>
-                  </div>
-                  <h3 style={{ fontWeight: 700, marginBottom: '16px' }}>Vehicle Management</h3>
-                  <p style={{ color: '#555', marginBottom: '20px' }}>Track every vehicle entering and exiting your facility — from delivery trucks to employee vehicles — with digital logs, weighbridge integration, and real-time status dashboards.</p>
-                </div>
-                <div className="feature-cards-grid" style={{ flex: '2 1 500px' }}>
-                  {[
-                    { icon: 'fa-car', title: 'License Plate Capture', desc: 'Automatic or manual plate number logging at entry and exit — cross-referenced against approved vendor and employee lists.' },
-                    { icon: 'fa-weight', title: 'Weighbridge Integration', desc: 'Connect to weighbridge systems for gross and tare weight capture, with digital challan generation for goods vehicles.' },
-                    { icon: 'fa-boxes', title: 'Material Movement Tracking', desc: 'Log incoming and outgoing goods against purchase orders and delivery notes to prevent unauthorized material movement.' },
-                    { icon: 'fa-parking', title: 'Parking Management', desc: 'Assign parking bays, track occupancy, and manage visitor and employee vehicle allocation in real time.' },
-                    { icon: 'fa-clock', title: 'TAT Monitoring', desc: 'Track turnaround time for delivery vehicles — identifying delays at loading bays and dock bottlenecks.' },
-                    { icon: 'fa-clipboard-list', title: 'Digital Gate Pass', desc: 'Generate material gate passes with QR verification, driver details, and authorized signatory records.' },
-                  ].map(({ icon, title, desc }) => (
-                    <div className="feature-card" key={title}>
-                      <div className="feature-card-icon"><i className={`fas ${icon}`}></i></div>
-                      <h4>{title}</h4>
-                      <p>{desc}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
+              <CardScroller cards={m.cards} />
             </div>
-          )}
+          ))}
         </div>
       </section>
 
@@ -160,7 +240,7 @@ export default function Security() {
       <section className="inner-cta">
         <div className="container">
           <h2>Take Control of Every Entry Point</h2>
-          <p>See how PlantIQX Security &amp; Gate Management digitizes and secures your facility access with a personalized demo.</p>
+          <p>See how PlantIQX Visitor Entry Management System digitizes and secures your facility access with a personalized demo.</p>
           <Link to="/contact" className="inner-cta-btn">Schedule a Demo <i className="fas fa-arrow-right ms-1"></i></Link>
         </div>
       </section>
