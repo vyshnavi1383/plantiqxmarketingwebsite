@@ -173,156 +173,80 @@ function AboutSection() {
 // ──────────────────────────────────────────────
 // Products Slider Section
 // ──────────────────────────────────────────────
-const ALL_PRODUCTS = [
-  { img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&h=900&fit=crop', label: 'Asset Management', title: 'Asset Management', desc: 'Gain complete visibility and control over all your plant assets. Predict maintenance, reduce downtime, and enhance asset reliability.', link: '/asset-management' },
-  { img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&h=900&fit=crop', label: 'Security', title: 'Gate Management System', desc: 'Control every entry point with digital visitor logs, vehicle tracking, and real-time access management — replacing manual registers with intelligent, audit-ready systems.', link: '/security' },
-  { img: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=1400&h=900&fit=crop', label: 'Surveillance', title: 'Surveillance', desc: 'AI-powered video intelligence that monitors your facility 24/7 — detecting safety violations, security threats, and operational inefficiencies in real time.', link: '/surveillance' },
-  { img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&h=900&fit=crop', label: 'Utilities', title: 'Utilities Monitoring', desc: 'Track electricity, water, gas, and compressed air consumption in real time — cut costs, eliminate waste, and achieve sustainability targets.', link: '/utilities-monitoring' },
-  { img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1400&h=900&fit=crop', label: 'Maintenance', title: 'Predictive Maintenance', desc: 'AI-driven failure prediction that tells you when equipment will break — before it does. Eliminate unplanned downtime, reduce maintenance costs, and extend asset life.', link: '/predictive-maintenance' },
-  { img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&h=900&fit=crop', label: 'Quality', title: 'Quality Automation', desc: 'Digitize inspection forms, enforce tolerances automatically, and generate quality dossiers — building a complete, traceable quality record for every job and component.', link: '/quality-automation' },
-  { img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&h=900&fit=crop', label: 'Logistics', title: 'FreightBid', desc: 'Digitize your entire freight procurement process — from bid creation to carrier selection — with intelligent automation that cuts costs and eliminates logistics delays.', link: '/freightbid' },
-  { img: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1400&h=900&fit=crop', label: 'Procurement', title: 'ProcureX', desc: 'Agentic AI that autonomously handles your entire purchase requisition-to-order process — from vendor RFQs to techno-commercial comparison to controlled PO release.', link: '/pr-to-po-automation' },
-  { img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1400&h=900&fit=crop', label: 'Monitoring', title: 'Condition Monitoring', desc: 'Continuously track the health of your industrial equipment through vibration, temperature, and performance data — catching faults early before they become failures.', link: '/condition-monitoring' },
-  { img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1400&h=900&fit=crop', label: 'Vision AI', title: 'Vision AI', desc: 'Deep learning–powered visual intelligence that automates defect detection, enforces worker safety, and drives measurable efficiency gains across your industrial facility.', link: '/vision-ai' },
-  { img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1400&h=900&fit=crop', label: 'Energy', title: 'Energy Management', desc: 'Comprehensive energy monitoring and optimization to reduce costs, minimize waste, and achieve your sustainability and net-zero targets.', link: '/energy-management' },
-  { img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&h=900&fit=crop', label: 'Analytics', title: 'Analytics Dashboard', desc: 'Visualize your operations with real-time dashboards. Make data-driven decisions with comprehensive analytics and reporting tools.', link: '/analytics-dashboard' },
+const PRODUCT_SLIDES = [
+  [
+    { img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop', title: 'Asset Management', desc: 'Gain complete visibility and control over all your plant assets. Predict maintenance, reduce downtime, and enhance asset reliability.', link: '/asset-management' },
+    { img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop', title: 'Gate Management System', desc: 'Control every entry point with digital visitor logs, vehicle tracking, and real-time access management — replacing manual registers with intelligent, audit-ready systems.', link: '/security' },
+    { img: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&h=600&fit=crop', title: 'Surveillance', desc: 'AI-powered video intelligence that monitors your facility 24/7 — detecting safety violations, security threats, and operational inefficiencies in real time.', link: '/surveillance' },
+    { img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop', title: 'Utilities Monitoring', desc: 'Track electricity, water, gas, and compressed air consumption in real time — cut costs, eliminate waste, and achieve sustainability targets.', link: '/utilities-monitoring' },
+  ],
+  [
+    { img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop', title: 'Predictive Maintenance', desc: 'AI-driven failure prediction that tells you when equipment will break — before it does. Eliminate unplanned downtime, reduce maintenance costs, and extend asset life.', link: '/predictive-maintenance' },
+    { img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop', title: 'Quality Automation', desc: 'Digitize inspection forms, enforce tolerances automatically, and generate quality dossiers — building a complete, traceable quality record for every job and component.', link: '/quality-automation' },
+    { img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop', title: 'FreightBid', desc: 'Digitize your entire freight procurement process — from bid creation to carrier selection — with intelligent automation that cuts costs and eliminates logistics delays.', link: '/freightbid' },
+    { img: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop', title: 'ProcureX', desc: 'Agentic AI that autonomously handles your entire purchase requisition-to-order process — from vendor RFQs to techno-commercial comparison to controlled PO release.', link: '/pr-to-po-automation' },
+  ],
+  [
+    { img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop', title: 'Condition Monitoring', desc: 'Continuously track the health of your industrial equipment through vibration, temperature, and performance data — catching faults early before they become failures.', link: '/condition-monitoring' },
+    { img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop', title: 'Vision AI', desc: 'Deep learning–powered visual intelligence that automates defect detection, enforces worker safety, and drives measurable efficiency gains across your industrial facility.', link: '/vision-ai' },
+    { img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop', title: 'Energy Management', desc: 'Comprehensive energy monitoring and optimization to reduce costs, minimize waste, and achieve your sustainability and net-zero targets.', link: '/energy-management' },
+    { img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop', title: 'Analytics Dashboard', desc: 'Visualize your operations with real-time dashboards. Make data-driven decisions with comprehensive analytics and reporting tools.', link: '/analytics-dashboard' },
+  ],
 ]
 
 function ProductsSection() {
-  const sectionRef = useRef(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const N = ALL_PRODUCTS.length
+  const [page, setPage] = useState(0)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = sectionRef.current
-      if (!section) return
-      const rect = section.getBoundingClientRect()
-      const scrolled = -rect.top
-      const total = rect.height - window.innerHeight
-      if (total <= 0) return
-      setScrollProgress(Math.max(0, Math.min(1, scrolled / total)))
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const goPrev = () => setPage(p => (p - 1 + PRODUCT_SLIDES.length) % PRODUCT_SLIDES.length)
+  const goNext = () => setPage(p => (p + 1) % PRODUCT_SLIDES.length)
 
   return (
-    <section
-      ref={sectionRef}
-      id="products"
-      style={{ height: `${N * 100}vh`, position: 'relative', background: '#050510' }}
-    >
-      {/* Sticky header above cards */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 0,
-        padding: '80px 60px 0',
-        pointerEvents: 'none',
-      }}>
+    <section id="products" className="products-section">
+      <div className="container">
         <span className="section-label-light">Our Products</span>
-        <h2 className="section-title text-white" style={{ maxWidth: '700px' }}>
-          Empowering Industries Through Smart Technology
-        </h2>
-      </div>
+        <h2 className="section-title text-white">Empowering Industries Through Smart Technology</h2>
+        <p className="section-description text-white-50">PlantIQX brings together a suite of powerful, scalable, and intelligent modules that redefine industrial performance.</p>
 
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
-        {ALL_PRODUCTS.map((product, i) => {
-          const slotStart = i / N
-          const slotEnd = (i + 1) / N
-          const slotProgress = Math.max(0, Math.min(1, (scrollProgress - slotStart) / (slotEnd - slotStart)))
-          const translateY = i === 0 ? 0 : (1 - slotProgress) * 100
-
-          return (
-            <div
-              key={product.title}
-              style={{
-                position: 'absolute',
-                top: 0, left: 0, right: 0, bottom: 0,
-                transform: `translateY(${translateY}%)`,
-                zIndex: i + 1,
-                willChange: 'transform',
-                transition: 'transform 0.05s linear',
-              }}
-            >
-              <div style={{
-                height: '100%',
-                display: 'flex',
-                overflow: 'hidden',
-                borderRadius: i > 0 ? '28px 28px 0 0' : '0',
-                background: 'linear-gradient(135deg, #0d1b3e 0%, #1a0a3c 60%, #06101f 100%)',
-              }}>
-                {/* Image */}
-                <div style={{ flex: '0 0 52%', position: 'relative', overflow: 'hidden' }}>
-                  <img
-                    src={product.img}
-                    alt={product.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  />
-                  <div style={{
-                    position: 'absolute', inset: 0,
-                    background: 'linear-gradient(to right, rgba(10,20,60,0.45) 0%, transparent 60%)',
-                  }} />
-                </div>
-
-                {/* Content */}
-                <div style={{
-                  flex: '0 0 48%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  padding: 'clamp(32px,5vw,80px) clamp(32px,5vw,80px)',
-                  color: '#fff',
-                  position: 'relative',
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '18px' }}>
-                    <div style={{ width: '36px', height: '2px', background: '#7c3aed' }} />
-                    <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: '#a78bfa' }}>
-                      {product.label}
-                    </span>
+        <div className="products-slider-wrapper">
+          <div className="products-slider-container">
+            {PRODUCT_SLIDES.map((slide, idx) => (
+              <div key={idx} className={`products-slider${idx === page ? ' active' : ''}`}>
+                {slide.map((card) => (
+                  <div className="product-card" key={card.title}>
+                    <img src={card.img} alt={card.title} className="product-image" />
+                    <div className="product-content">
+                      <h4>{card.title}</h4>
+                      <p>{card.desc}</p>
+                      <Link to={card.link} className="product-link">
+                        Learn More <i className="fas fa-arrow-right ms-2"></i>
+                      </Link>
+                    </div>
                   </div>
-                  <h2 style={{
-                    fontSize: 'clamp(1.8rem, 3.5vw, 3.2rem)',
-                    fontWeight: 800,
-                    lineHeight: 1.1,
-                    marginBottom: '20px',
-                    color: '#fff',
-                  }}>
-                    {product.title}
-                  </h2>
-                  <p style={{
-                    fontSize: 'clamp(0.9rem, 1.1vw, 1.05rem)',
-                    lineHeight: 1.75,
-                    color: 'rgba(255,255,255,0.65)',
-                    maxWidth: '420px',
-                    marginBottom: '36px',
-                  }}>
-                    {product.desc}
-                  </p>
-                  <Link
-                    to={product.link}
-                    style={{
-                      display: 'inline-flex', alignItems: 'center', gap: '10px',
-                      background: 'linear-gradient(135deg, #6d28d9, #4f46e5)',
-                      color: '#fff', padding: '13px 28px', borderRadius: '50px',
-                      fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none',
-                      width: 'fit-content', boxShadow: '0 4px 20px rgba(109,40,217,0.4)',
-                    }}
-                  >
-                    Explore <i className="fas fa-arrow-right"></i>
-                  </Link>
-                  <div style={{
-                    position: 'absolute', bottom: '36px', right: '40px',
-                    fontSize: '0.78rem', color: 'rgba(255,255,255,0.25)',
-                    fontWeight: 700, letterSpacing: '2px',
-                  }}>
-                    {String(i + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}
-                  </div>
-                </div>
+                ))}
               </div>
+            ))}
+          </div>
+
+          <div className="products-controls">
+            <div className="products-indicators">
+              {PRODUCT_SLIDES.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`product-indicator${idx === page ? ' active' : ''}`}
+                  onClick={() => setPage(idx)}
+                ></span>
+              ))}
             </div>
-          )
-        })}
+            <div className="products-nav">
+              <button className="products-nav-btn prev" onClick={goPrev}>
+                <i className="fas fa-chevron-left"></i>
+              </button>
+              <button className="products-nav-btn next" onClick={goNext}>
+                <i className="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
